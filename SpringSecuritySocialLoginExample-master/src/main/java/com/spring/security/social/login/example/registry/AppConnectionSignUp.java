@@ -19,9 +19,9 @@ public class AppConnectionSignUp implements ConnectionSignUp {
 
     @Override
     public String execute(final Connection<?> connection) {
-        UserRegistrationForm userDetails = toUserRegistrationObject(connection.getEmail().getProviderUserId(), SecurityUtil.toSocialProvider(connection.getKey().getProviderId()), connection.fetchUserProfile());
+        UserRegistrationForm userDetails = toUserRegistrationObject(SecurityUtil.toSocialProvider(connection.getKey().getProviderId()), connection.fetchUserProfile());
         LocalUser user = (LocalUser) userService.registerNewUser(userDetails);
-        return user.getUserId();
+        return user.getEmail();
     }
 
     private UserRegistrationForm toUserRegistrationObject(final SocialProvider socialProvider, final UserProfile userProfile) {

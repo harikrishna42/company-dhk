@@ -3,7 +3,7 @@ package com.spring.security.social.login.example.dto;
 public class UserRegistrationForm {
 
     private String UserName;
-    private String phoneno;
+    private int phonenumber;
     private String email;
     private String password;
     private SocialProvider socialProvider;
@@ -11,10 +11,10 @@ public class UserRegistrationForm {
     public UserRegistrationForm() {
     }
 
-    public UserRegistrationForm(final String UserName, final String phoneno, final String email, final String password, final SocialProvider socialProvider) {
+    public UserRegistrationForm(final String UserName, final int phonenumber, final String email, final String password, final SocialProvider socialProvider) {
 
         this.UserName = UserName;
-        this.phoneno = phoneno;
+        this.phonenumber = phonenumber;
         this.email = email;
         this.password = password;
         this.socialProvider = socialProvider;
@@ -49,12 +49,12 @@ public class UserRegistrationForm {
         this.password = password;
     }
 
-    public String getPhoneno() {
-        return phoneno;
+    public int getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPhoneno(final String phoneno) {
-        this.phoneno = phoneno;
+    public void setPhonenumber(final int phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public SocialProvider getSocialProvider() {
@@ -68,7 +68,7 @@ public class UserRegistrationForm {
     public static class Builder {
 
         private String UserName;
-        private String phoneno;
+        private int phonenumber;
         private String email;
         private String password;
         private SocialProvider socialProvider;
@@ -89,8 +89,8 @@ public class UserRegistrationForm {
             return this;
         }
 
-        public Builder addPhoneNo(final String phoneno) {
-            this.phoneno = phoneno;
+        public Builder addPhoneNumber(final int phonenumber) {
+            this.phonenumber = phonenumber;
             return this;
         }
 
@@ -100,7 +100,7 @@ public class UserRegistrationForm {
         }
 
         public UserRegistrationForm build() {
-            return new UserRegistrationForm(UserName, phoneno, email, password, socialProvider);
+            return new UserRegistrationForm(UserName, phonenumber, email, password, socialProvider);
         }
     }
 }

@@ -15,18 +15,20 @@ import com.spring.security.social.login.example.dto.SocialUser;
 
 
 @Service("socialUserDetailService")
-public class SocialUserDetailService implements SocialUserDetailsService {
-
+public class SocialUserDetailService //implements SocialUserDetailsService {
+{
     @Autowired
     @Qualifier(value = "localUserDetailService")
     private UserDetailsService userDetailService;
 
-    @Override
-    public SocialUserDetails loadUserByUserId(final String userId) throws UsernameNotFoundException, DataAccessException {
-        LocalUser user = (LocalUser) userDetailService.loadUserByUsername(userId);
+    //@Override
+    public SocialUserDetails loadUserByEmail(final String email) throws UsernameNotFoundException, DataAccessException {
+        LocalUser user = (LocalUser) userDetailService.loadUserByUsername(email);
         if (user == null) {
-            throw new SocialAuthenticationException("No local user mapped with social user " + userId);
+            throw new SocialAuthenticationException("No local user mapped with social user " + email);
         }
         return new SocialUser(user.getUsername(), user.getPassword(), user.isEnabled(), user.isAccountNonExpired(), user.isCredentialsNonExpired(), user.isAccountNonLocked(), user.getAuthorities());
     }
+
+
 }

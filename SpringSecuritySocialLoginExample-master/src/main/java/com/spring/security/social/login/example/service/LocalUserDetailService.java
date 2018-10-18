@@ -31,7 +31,7 @@ public class LocalUserDetailService implements UserDetailsService {
             return null;
         }
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = buildSimpleGrantedAuthorities(user);
-        return new LocalUser(user.getName(), user.getPassword(), user.getActive() == 1 ? true : false, true
+        return new LocalUser(user.getName(), user.getPassword(), user.getphonenumber() == 1 ? true : false, true
                 , true, true, simpleGrantedAuthorities);
     }
 

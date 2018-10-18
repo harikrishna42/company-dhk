@@ -31,7 +31,7 @@ public class RegistrationUserDetailService implements UserService {
     @Transactional(value = "transactionManager")
     public LocalUser registerNewUser(final UserRegistrationForm userRegistrationForm) throws UserAlreadyExistAuthenticationException {
 
-        com.spring.security.social.login. example.database.model.User userExist = userDAO.get(userRegistrationForm.getUserId());
+        com.spring.security.social.login. example.database.model.User userExist = userDAO.get(userRegistrationForm.getEmail());
         if (userExist != null) {
             throw new UserAlreadyExistAuthenticationException("User with email id " + userRegistrationForm.getEmail() + " already exist");
         }
@@ -40,7 +40,7 @@ public class RegistrationUserDetailService implements UserService {
         userDAO.save(user);
         //userDAO.flush();
 
-        return (LocalUser) userDetailService.loadUserByUsername(userRegistrationForm.getEmail());
+        return (LocalUser) userDetailService.loadUserByEmail(userRegistrationForm.getEmail());
     }
 
     private User buildUser(final UserRegistrationForm formDTO) {
@@ -48,12 +48,12 @@ public class RegistrationUserDetailService implements UserService {
         user.setEmailId(formDTO.getEmail());
         user.setName(formDTO.getUserName());
         user.setPassword(formDTO.getPassword());
+        user.setphonenumber(formDTO.getphonenumber());
         final HashSet<Role> roles = new HashSet<Role>();
         Role role = new Role();
         role.setName("ROLE_USER");
         roles.add(role);
         user.setRoles(roles);
-        user.setActive(1);
         user.setProvider(formDTO.getSocialProvider().name());
         return user;
     }

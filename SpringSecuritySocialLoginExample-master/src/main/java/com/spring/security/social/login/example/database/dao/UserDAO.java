@@ -25,6 +25,16 @@ public class UserDAO implements GenericDao<User,String> {
 	public int update(Integer id) {
 		
 		return 0;
+	}
+
+	public void save(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public User get(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}  
 
     
